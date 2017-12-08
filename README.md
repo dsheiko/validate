@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/dsheiko/validate/license)](https://packagist.org/packages/dsheiko/validate)
 [![Build Status](https://travis-ci.org/dsheiko/validate.png)](https://travis-ci.org/dsheiko/validate)
 
-Validation library for testing complex types (including key-value arrays) against a contract
+Validation library for testing primitive and complex types (including key-value arrays) against a contract
 
 * [Installation](#installation)
 * [Usage](#usage)
