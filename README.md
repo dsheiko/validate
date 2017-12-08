@@ -49,10 +49,10 @@ function login($email, $password)
 }
 
 // may throw
-// App\Lib\Validate\IsString
-// App\Lib\Validate\IsString\minLength\Exception
-// App\Lib\Validate\IsString\maxLength\Exception
-// App\Lib\Validate\IsEmail
+// Dsheiko\Validate\IsString
+// Dsheiko\Validate\IsString\minLength\Exception
+// Dsheiko\Validate\IsString\maxLength\Exception
+// Dsheiko\Validate\IsEmail
 ```
 
 ### Map Validation
