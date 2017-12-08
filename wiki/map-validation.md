@@ -56,3 +56,5 @@ public function authLogin(array $params)
 //...
 }
 ```
+
+* [Custom Validators](./validator-interface.md)

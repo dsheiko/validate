@@ -35,3 +35,5 @@ function log($userId, ...$options)
     ]);
 }
 ```
+
+* [Map Validation](./map-validation.md)

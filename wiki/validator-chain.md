@@ -11,3 +11,4 @@ echo $v->isValid(); // false
 var_dump($v->getMessages());
 ```
 
+* [Validation by Contract](./validation-by-contract.md)

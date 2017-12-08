@@ -24,3 +24,4 @@ echo $v->isValid("12345", ["minLength" => 10, "maxLength" => 1]); // FALSE
 echo $v->getMessage(); // the message
 ```
 
+* [Validator Chain](./validator-chain.md)
