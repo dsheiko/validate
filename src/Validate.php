@@ -45,9 +45,6 @@ class Validate
     public function __call($name, array $arguments)
     {
         $validator = $this->factory($name);
-        if (!$validator) {
-            return $this;
-        }
         $value = isset($arguments[0]) ? $arguments[0] : null;
         $options = isset($arguments[1]) ? $arguments[1] : [];
         $validator->add($this, $value, $options);

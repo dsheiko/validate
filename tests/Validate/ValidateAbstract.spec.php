@@ -43,6 +43,13 @@ describe("\\Dsheiko\\Validate\\ValidateAstract", function() {
             })->to->throw("\\Dsheiko\Validate\IsInt\Min\Exception");
         });
 
+        it("throws exception in case there is no class matching name", function() {
+            expect(function() {
+                $method = Reflection::staticMethod(TEST_TARGET_CLASS, "throwException");
+                $method('NoneSense', 'min');
+            })->to->throw("\\RuntimeException");
+        });
+
     });
 
     /**
@@ -88,7 +95,14 @@ describe("\\Dsheiko\\Validate\\ValidateAstract", function() {
                 $v->validate(10, ["min" => 20]);
             })->with("10 is too hight; must be less than 20")->to->throw("\\Fixtures\IsInt\Min\Exception");
         });
-        
+
+        it("throws exception when method not found", function() {
+            expect(function() {
+                $v = new \Fixtures\isInt();
+                $v->validate(10, ["NonSense" => 20]);
+            })->to->throw("\\RuntimeException");
+        });
+
     });
 });
 

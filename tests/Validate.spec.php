@@ -21,10 +21,39 @@ describe("\\Dsheiko\\Validate", function() {
 
     });
 
+    describe('->factory', function() {
+
+        it("creates validator instance by a supplied name", function() {
+            $v = new Validate();
+            expect($v->factory("IsString"))->to->be->an->instanceof("\\Dsheiko\Validate\IsString");
+        });
+
+        it("throws exception when there is not class matching a supplied name", function() {
+            expect(function() {
+                $v = new Validate();
+                $v->factory("NonSense");
+            })->to->throw("\\RuntimeException");
+        });
+
+    });
+
     /**
      *  @covers Dsheiko\Validate::contract
      */
     describe('::contract', function() {
+
+
+        it("throws exception in case of invalid contract (invalid type)", function() {
+            expect(function() {
+                Validate::contract([1], [100]);
+            })->to->throw("\\RuntimeException");
+        });
+
+        it("throws exception in case of missing contract", function() {
+            expect(function() {
+                Validate::contract([1], []);
+            })->to->not->throw("\\Exception");
+        });
 
         it("throws no exception if valid (contract: ['foo', 'bar'])", function() {
             expect(function() {
@@ -105,6 +134,7 @@ describe("\\Dsheiko\\Validate", function() {
     });
 
     /**
+     *  @covers Dsheiko\Reflection::staticMethod
      *  @covers Dsheiko\Validate::normalizeOptionContract
      */
     describe('::normalizeOptionContract', function() {
@@ -122,6 +152,7 @@ describe("\\Dsheiko\\Validate", function() {
     });
 
     /**
+     *  @covers Dsheiko\Reflection::staticMethod
      *  @covers Dsheiko\Validate::getMapEntryContractOptionality
      */
     describe('::getMapEntryContractOptionality', function() {
@@ -141,6 +172,7 @@ describe("\\Dsheiko\\Validate", function() {
     });
 
     /**
+     *  @covers Dsheiko\Reflection::staticMethod
      *  @covers Dsheiko\Validate::getMapEntryContractValidators
      */
     describe('::getMapEntryContractValidators', function() {
@@ -261,7 +293,7 @@ describe("\\Dsheiko\\Validate", function() {
                     ]);
                 })->to->throw("\\Dsheiko\Validate\IsInt\Min\Exception");
             });
-            
+
         });
     });
 });

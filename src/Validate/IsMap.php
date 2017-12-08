@@ -25,6 +25,7 @@ class IsMap extends ValidateAbstract
      */
     public function validate($value, array $optionsParam = null)
     {
+        static::test($value); // stub do not break inteface
         ValidateLib::map($value, $optionsParam);
     }
 }

@@ -10,7 +10,7 @@ describe("\\Dsheiko\\Validate\\isString", function() {
 
         it("returns true if value is valid", function() {
             $v = new IsString();
-            expect($v->isValid('string'), "expected to be valid");
+            expect($v->isValid('string'))->to->be->ok;
             expect($v->getException())->to->equal(null);
         });
 
@@ -67,7 +67,7 @@ describe("\\Dsheiko\\Validate\\isString", function() {
             $v->isValid("  ", ["notEmpty" => true]);
             expect($v->getMessage())->to->equal('"  " string must not be empty or consist of whitespaces');
         });
-        
+
     });
 });
 
