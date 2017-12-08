@@ -22,7 +22,7 @@ abstract class ValidateAbstract implements ValidateInterface
     public function validate($value, array $optionsParam = null)
     {
         $class = get_called_class();
-        // If validator defines options they are taken 
+        // If validator defines options they are taken
         $options = isset(static::$options) ? static::$options : $optionsParam;
         $tplData = static::prepareTplData($value, $options);
         if (!static::test($value)) {
