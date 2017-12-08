@@ -1,5 +1,9 @@
 # Dsheiko\Validate
 
+[![Latest Stable Version](https://poser.pugx.org/dsheiko/validate/v/stable)](https://packagist.org/packages/dsheiko/validate)
+[![Total Downloads](https://poser.pugx.org/dsheiko/validate/downloads)](https://packagist.org/packages/dsheiko/validate)
+[![License](https://poser.pugx.org/dsheiko/validate/license)](https://packagist.org/packages/dsheiko/validate)
+
 Validation library for testing complex types (including key-value arrays) against a contract
 
 * [Installation](#installation)
