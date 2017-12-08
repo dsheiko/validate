@@ -1,0 +1,39 @@
+{
+  "name": "dsheiko/validate",
+  "type": "library",
+  "description": "Validation library for testing complex types against a contract",
+  "keywords": ["validate", "DbC", "validation"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dmitry Sheiko",
+      "homepage": "http://dsheiko.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0"
+  },
+  "require-dev": {
+    "peridot-php/leo": "^1.6",
+    "peridot-php/peridot": "^1.19",
+    "peridot-php/peridot-code-coverage-reporters": "^3.0",
+    "squizlabs/php_codesniffer": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dsheiko\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/"
+    ]
+  },
+  "scripts": {
+    "test": "vendor/bin/peridot tests/"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

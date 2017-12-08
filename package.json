@@ -1,0 +1,14 @@
+{
+  "name": "validate",
+  "version": "1.0.0",
+  "description": "Validation library for testing complex types against a contract",
+  "scripts": {
+    "update": "composer dump-autoload",
+    "test": "vendor/bin/peridot tests/",
+    "lint": "./vendor/bin/phpcs --standard=PSR2 ./src",
+    "lint:fix": "./vendor/bin/phpcbf --standard=PSR2 ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
