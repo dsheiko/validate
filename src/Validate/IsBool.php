@@ -1,7 +1,7 @@
 <?php
 namespace Dsheiko\Validate;
 
-class IsBool extends ValidateAbstract
+class IsBool extends ValidateAbstract implements ValidateInterface
 {
     /**
      * Main validation method

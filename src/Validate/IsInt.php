@@ -1,7 +1,7 @@
 <?php
 namespace Dsheiko\Validate;
 
-class IsInt extends ValidateAbstract
+class IsInt extends ValidateAbstract implements ValidateInterface
 {
     /**
      * Test if a supplied value greater than the constraint

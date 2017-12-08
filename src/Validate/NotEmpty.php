@@ -1,7 +1,7 @@
 <?php
 namespace Dsheiko\Validate;
 
-class NotEmpty extends ValidateAbstract
+class NotEmpty extends ValidateAbstract implements ValidateInterface
 {
    /**
     * Main validation method

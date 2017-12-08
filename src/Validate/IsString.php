@@ -1,7 +1,7 @@
 <?php
 namespace Dsheiko\Validate;
 
-class IsString extends ValidateAbstract
+class IsString extends ValidateAbstract implements ValidateInterface
 {
 
     /**

@@ -3,7 +3,7 @@ namespace Dsheiko\Validate;
 
 use Dsheiko\Validate as ValidateLib;
 
-abstract class ValidateAbstract implements ValidateInterface
+abstract class ValidateAbstract
 {
     use ValidateProcessorTrait;
 

@@ -1,7 +1,7 @@
 <?php
 namespace Dsheiko\Validate;
 
-class IsArray extends ValidateAbstract
+class IsArray extends ValidateAbstract implements ValidateInterface
 {
    /**
     * Main validation method
