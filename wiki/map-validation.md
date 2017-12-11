@@ -49,9 +49,7 @@ public function authLogin(array $params)
         "password" => ["mandatory", "IsString"=> [ "minLength" => 6, "maxLength" => 32, "notEmpty" => true ]],
         "apikey" => ["optional", "IsString"],
         "accesskey" => ["optional", "IsString"],
-        "afid" => ["optional", "IsString"],
-        "eulaaccept" => "optional",
-        "rememberme" => "optional"
+        "rememberme" => ["optional", "IsBool"],
     ]);
 //...
 }
