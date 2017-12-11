@@ -4,6 +4,7 @@
   "description": "Validation library for testing complex types against a contract",
   "keywords": ["validate", "DbC", "validation"],
   "license": "MIT",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Dmitry Sheiko",
