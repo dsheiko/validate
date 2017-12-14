@@ -2,7 +2,7 @@
   "name": "dsheiko/validate",
   "type": "library",
   "description": "Validation library for testing primitive and complex types against a contract",
-  "keywords": ["validate", "DbC", "validation"],
+  "keywords": ["validate", "DbC", "validation", "library"],
   "license": "MIT",
   "authors": [
     {
