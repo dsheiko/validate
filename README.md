@@ -28,6 +28,7 @@ composer require "dsheiko/validate"
 ## Usage
 
 - [Basic Usage](./wiki/basic-usage.md)
+- [Provided Validators](./wiki/validators.md)
 - [Validator Chain](./wiki/validator-chain.md)
 - [Validation by Contract](./wiki/validation-by-contract.md)
 - [Map Validation](./wiki/map-validation.md)
