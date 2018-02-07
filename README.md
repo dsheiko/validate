@@ -60,8 +60,8 @@ may throw
 
 with a message like
 
-- Parameter "email" validation failed: "jon#snow.i.." is not a valid email address
-- Parameter "password" validation failed: "123" is too short; must be more than 6 chars
+- `Parameter "email" validation failed: "jon#snow.i.." is not a valid email address`
+- `Parameter "password" validation failed: "123" is too short; must be more than 6 chars`
 
 ### Map Validation
 ```php
