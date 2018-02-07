@@ -10,9 +10,9 @@ class IsString extends ValidateAbstract implements ValidateInterface
      * @param string $value
      * @return bool
      */
-    public static function testOptionNotEmpty($value)
+    public static function testOptionNotEmpty($value): bool
     {
-        return strlen(trim($value)) > 0;
+        return \strlen(trim($value)) > 0;
     }
 
     /**
@@ -22,9 +22,9 @@ class IsString extends ValidateAbstract implements ValidateInterface
      * @param int $constraint
      * @return bool
      */
-    public static function testOptionMinLength($value, $constraint)
+    public static function testOptionMinLength($value, $constraint): bool
     {
-        return strlen($value) >= $constraint;
+        return \strlen($value) >= $constraint;
     }
 
     /**
@@ -34,9 +34,9 @@ class IsString extends ValidateAbstract implements ValidateInterface
      * @param int $constraint
      * @return bool
      */
-    public static function testOptionMaxLength($value, $constraint)
+    public static function testOptionMaxLength($value, $constraint): bool
     {
-        return strlen($value) <= $constraint;
+        return \strlen($value) <= $constraint;
     }
 
     /**
@@ -44,8 +44,8 @@ class IsString extends ValidateAbstract implements ValidateInterface
      *
      * @inheritDoc
      */
-    public static function test($value)
+    public static function test($value): bool
     {
-        return is_string($value);
+        return \is_string($value);
     }
 }

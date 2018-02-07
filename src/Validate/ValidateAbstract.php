@@ -1,7 +1,8 @@
 <?php
 namespace Dsheiko\Validate;
 
-use Dsheiko\Validate as ValidateLib;
+use Dsheiko\Validate as ValidateChain;
+use Dsheiko\Validate\Exception;
 
 abstract class ValidateAbstract
 {
@@ -16,14 +17,14 @@ abstract class ValidateAbstract
      *
      * @param mixed $value
      * [@param array $optionsParam]
-     * @throws \Validate\Exception
+     * @throws \Dsheiko\Validate\Exception
      * @return void
      */
     public function validate($value, array $optionsParam = null)
     {
-        $class = get_called_class();
+        $class = \get_called_class();
         // If validator defines options they are taken
-        $options = isset(static::$options) ? static::$options : $optionsParam;
+        $options = static::$options ?? $optionsParam;
         $tplData = static::prepareTplData($value, $options);
         if (!static::test($value)) {
             static::throwException($class, null, $tplData);
@@ -33,7 +34,7 @@ abstract class ValidateAbstract
         }
         foreach ($options as $option => $constraint) {
             $test = static::getOptionTestMethod($option);
-            if (!method_exists($class, $test)) {
+            if (!\method_exists($class, $test)) {
                 throw new \RuntimeException("Method to test `{$option}` option ({$test}) not found in {$class}");
             }
             if (!static::$test($value, $constraint)) {
@@ -48,7 +49,7 @@ abstract class ValidateAbstract
      * [@param array $options]
      * @return boolean
      */
-    public function isValid($value, array $options = null)
+    public function isValid($value, array $options = null): bool
     {
         try {
             $this->validate($value, $options);
@@ -66,11 +67,11 @@ abstract class ValidateAbstract
     /**
      * Add validator into the chain
      *
-     * @param \Validate $chain
+     * @param \Dsheiko\Validate $chain
      * @param array $arguments
-     * @return \Validate
+     * @return \Dsheiko\Validate
      */
-    public function add(ValidateLib $chain, $value, array $options = null)
+    public function add(ValidateChain $chain, $value, array $options = null)
     {
         if (!$this->isValid($value, $options)) {
             $chain->setValid(false);
@@ -82,7 +83,7 @@ abstract class ValidateAbstract
     /**
      * Return last exception message
      *
-     * @return string
+     * @return string|null
      */
     public function getMessage()
     {
@@ -91,7 +92,7 @@ abstract class ValidateAbstract
     /**
      * Return last thrown exception
      *
-     * @return \Validate\Exception
+     * @return \Dsheiko\Validate\Exception | null
      */
     public function getException()
     {

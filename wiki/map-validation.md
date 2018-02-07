@@ -7,7 +7,7 @@ The method is used to validate a map-like structure (key-value array)
 ```php
 <?php
 
-$options = [ "foo" => 1, "bar" => 9 ];
+$options = [ "foo" => 1 ];
 Validate::map($options, [
   "foo" => "mandatory",
   "bar" => "optional"
@@ -20,12 +20,12 @@ Validate::map($options, [
 ```php
 <?php
 //...
-$params = [ "foo" => "foo" ];
+$params = [ "foo" => "FOO" ];
 Validate::map($params, [
   "foo" => ["mandatory", "IsInt, NotEmpty"]
 ]);
 ```
-throws `Validate\IsInt\Exception`
+throws `Validate\IsInt\Exception: Property "foo" validation failed: "FOO" is not an integer`
 
 ### Parameterized validators
 ```php
@@ -36,10 +36,10 @@ Validate::map($params, [
   "foo" => ["mandatory", "IsInt" => ["min" => 10], "NotEmpty"]
 ]);
 ```
-throws Validate\IsInt\Min\Exception
+throws `Validate\IsInt\Min\Exception: Property "foo" validation failed: 1 is too low; must be more than 10`
 
 
-### A real-world example:
+### A real-world example
 ```php
 <?php
 public function authLogin(array $params)
@@ -54,5 +54,15 @@ public function authLogin(array $params)
 //...
 }
 ```
+
+## Exception Delegation
+
+```php
+<?php
+Validate::map(["foo" => "FOO"], [
+    "foo" => [Validate::OPTIONAL, "IsInt"],
+], \InvalidArgumentException::class);
+```
+it throws `\InvalidArgumentException: Property "foo" validation failed: "FOO" is not an integer`
 
 * [Custom Validators](./validator-interface.md)

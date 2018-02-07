@@ -2,17 +2,15 @@
 
 ```php
 <?php
-Validate::contract(
-    [ 1, "str" ],
-    [
-      [ "IsInt" => [ "min" => 0, "max" => 100 ] ],
-      [ "IsString" => [ "minLength" => 0, "notEmpty" => true ] ],
-   ]);
+Validate::contract([
+    "foo" => [ 200, [ "IsInt" => [ "min" => 0, "max" => 100 ] ] ],
+    "bar" => [ "str", [ "IsString" => [ "minLength" => 0, "notEmpty" => true ] ] ]
+]);
 ```
-it throws the corresponding exception.
+it throws `Validate\IsInt\Max\Exception: Parameter "foo" validation failed: 200 is too hight; must be less than 100`
 
 
-## Contract for maps
+## A real-world example
 
 ```php
 <?php
@@ -20,20 +18,26 @@ it throws the corresponding exception.
 function log($userId, ...$options)
 {
     Validate::contract([
-            $userId,
-            $options
-        ], [
-        [
-            "IsInt"
-        ],
-        [
+        "userId" => [ $userId, "IsInt" ],
+        "options" => [ $options, [
            "IsMap" => [
                 "option1" => ["mandatory", "IsBool"],
                 "option2" => ["optional", "IsString" => ["minLength" => 6]],
             ]
-        ],
+        ] ],
     ]);
 }
 ```
+
+## Exception Delegation
+
+```php
+<?php
+Validate::contract([
+    "baz" => [ [1, 2, 3], "IsAssocArray" ],
+], \InvalidArgumentException::class);
+```
+it throws `\InvalidArgumentException: Parameter "baz" validation failed: [1,2,3] is not an array`
+
 
 * [Map Validation](./map-validation.md)

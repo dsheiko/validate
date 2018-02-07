@@ -8,8 +8,8 @@ class IsArray extends ValidateAbstract implements ValidateInterface
     *
     * @inheritDoc
     */
-    public static function test($value)
+    public static function test($value): bool
     {
-        return is_array($value);
+        return \is_array($value);
     }
 }

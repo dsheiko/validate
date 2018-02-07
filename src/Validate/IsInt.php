@@ -10,7 +10,7 @@ class IsInt extends ValidateAbstract implements ValidateInterface
      * @param int $constraint
      * @return bool
      */
-    public static function testOptionMin($value, $constraint)
+    public static function testOptionMin($value, $constraint): bool
     {
         return $value >= $constraint;
     }
@@ -22,7 +22,7 @@ class IsInt extends ValidateAbstract implements ValidateInterface
      * @param int $constraint
      * @return bool
      */
-    public static function testOptionMax($value, $constraint)
+    public static function testOptionMax($value, $constraint): bool
     {
         return $value <= $constraint;
     }
@@ -32,8 +32,8 @@ class IsInt extends ValidateAbstract implements ValidateInterface
      *
      * @inheritDoc
      */
-    public static function test($value)
+    public static function test($value): bool
     {
-        return is_int($value);
+        return \is_int($value);
     }
 }

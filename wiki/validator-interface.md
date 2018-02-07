@@ -1,6 +1,6 @@
 # Validator Interface
 
-Validators implement ValidateInterface and therefore required only a static method `test` that is used to do the main check.
+Validators implement `ValidateInterface` and therefore required only a static method `test` that is used to do the main check.
 
 ```php
 <?php
@@ -40,15 +40,15 @@ namespace Dsheiko\Validate;
 class IsInt extends ValidateAbstract
 {
 
-    public static function testOptionMin($value, $constraint)
+    public static function testOptionMin($value, $constraint): bool
     {
         return $value >= $constraint;
     }
-    public static function testOptionMax($value, $constraint)
+    public static function testOptionMax($value, $constraint): bool
     {
         return $value <= $constraint;
     }
-    public static function test($value)
+    public static function test($value): bool
     {
         return is_int($value);
     }
@@ -81,7 +81,7 @@ class IsEmailAddress extends IsString
 {
     protected static $options = [ "notEmpty" => true, "isEmailAddress" => true ];
 
-    public static function testOptionIsEmailAddress($value)
+    public static function testOptionIsEmailAddress($value): bool
     {
         return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
     }

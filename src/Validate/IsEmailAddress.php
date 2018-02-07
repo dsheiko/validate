@@ -8,8 +8,8 @@ class IsEmailAddress extends IsString
      * @param mixed $value - a value to validate
      * @return boolean
      */
-    public static function testOptionIsEmailAddress($value)
+    public static function testOptionIsEmailAddress($value): bool
     {
-        return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
+        return false !== \filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 }

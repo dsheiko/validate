@@ -8,7 +8,7 @@ class NotEmpty extends ValidateAbstract implements ValidateInterface
     *
     * @inheritDoc
     */
-    public static function test($value)
+    public static function test($value): bool
     {
         return is_string($value) ? (bool)trim($value) : (bool)$value;
     }

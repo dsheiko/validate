@@ -4,15 +4,30 @@ namespace Dsheiko\Validate;
 trait ValidateProcessorTrait
 {
     /**
+     * Trim supplied string to pass length constraints
+     * @param string $string
+     * @return string
+     */
+    private static function trim(string $string): string
+    {
+        return \strlen($string) > static::DISPLAY_VALUE_MAX_LEN
+            ? \substr($string, 0, static::DISPLAY_VALUE_MAX_LEN) . ".." : $string;
+    }
+    /**
      * Normalize value to include as a string into Exception message
      * @param mixed $value
      * @return string
      */
-    protected static function normalizeValue($value)
+    protected static function normalizeValue($value): string
     {
-        $json = json_encode($value);
-        return strlen($json) > static::DISPLAY_VALUE_MAX_LEN
-            ? substr($json, 0, static::DISPLAY_VALUE_MAX_LEN) . ".." : $json;
+        switch (true) {
+            case \is_string($value):
+                return \json_encode(static::trim($value));
+            case \is_string($value):
+                return static::trim((string)$value);
+            default:
+                return static::trim(\json_encode($value));
+        }
     }
     /**
      * Retrieve from class name the corresponding exception class
@@ -23,7 +38,7 @@ trait ValidateProcessorTrait
      * @param string $option - validator option e.g. min
      * @return string
      */
-    protected static function getExceptionClass($class, $option = null)
+    protected static function getExceptionClass(string $class, string $option = null): string
     {
         return "\\" . \ltrim($class, "\\") . "\\" .
             ( $option ? ucfirst($option) . "\\" : "" ) . "Exception";
@@ -36,11 +51,11 @@ trait ValidateProcessorTrait
      * [@param array $tplData]
      * @throws \Validate\Exception
      */
-    protected static function throwException($class, $option = null, array $tplData = null)
+    protected static function throwException(string $class, string $option = null, array $tplData = null)
     {
         $exClass = static::getExceptionClass($class, $option);
-        $msg = $tplData ? strtr($exClass::$tpl, $tplData) : "Value is not valid";
-        if (!class_exists($exClass)) {
+        $msg = $tplData ? \strtr($exClass::$tpl, $tplData) : "Value is not valid";
+        if (!\class_exists($exClass)) {
             throw new \RuntimeException("Exception class `{$exClass}` not found for {$class}");
         }
         throw new $exClass($msg);
@@ -52,9 +67,9 @@ trait ValidateProcessorTrait
      * @param string $option
      * @return string
      */
-    protected static function getOptionTestMethod($option)
+    protected static function getOptionTestMethod(string $option): string
     {
-        return "testOption" . ucfirst($option);
+        return "testOption" . \ucfirst($option);
     }
 
     /**
@@ -65,10 +80,10 @@ trait ValidateProcessorTrait
      * [@param array $options]
      * @return array
      */
-    protected static function prepareTplData($value, array $options = null)
+    protected static function prepareTplData($value, array $options = null): array
     {
         $data = ["{value}" => static::normalizeValue($value)];
-        $options && array_walk($options, function ($constraint, $option) use (&$data) {
+        $options && \array_walk($options, function ($constraint, $option) use (&$data) {
             $data["{" . $option . "}"] = (string)$constraint;
         });
         return $data;

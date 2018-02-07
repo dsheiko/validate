@@ -1,7 +1,7 @@
 {
   "name": "validate",
   "version": "1.0.1",
-  "description": "Validation library for testing complex types against a contract",
+  "description": "Extendable validation library for testing complex types against a contract",
   "scripts": {
     "update": "composer dump-autoload",
     "test": "./vendor/bin/peridot tests/",

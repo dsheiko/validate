@@ -4,13 +4,14 @@ namespace Dsheiko;
 use RuntimeException;
 use Dsheiko\Validate\ValidateContractTrait;
 use Dsheiko\Validate\ValidateMapTrait;
+use Dsheiko\Validate\ValidateAbstract;
 
 class Validate
 {
     const MANDATORY = "mandatory";
     const OPTIONAL = "optional";
 
-    private $messages = array();
+    private $messages = [];
     private $isValid = true;
 
     use ValidateContractTrait,
@@ -23,12 +24,12 @@ class Validate
      *
      * @param string $name
      *
-     * @return \Validate\ValidateAbstract
+     * @return \Dsheiko\Validate\ValidateAbstract
      */
-    public function factory($name)
+    public function factory($name): ValidateAbstract
     {
         $className = "\\Dsheiko\\Validate\\" . ucfirst($name);
-        if (!class_exists($className)) {
+        if (!\class_exists($className)) {
             throw new RuntimeException("Validator {$className} not found");
         }
         return new $className();
@@ -40,9 +41,9 @@ class Validate
      * @param string $name
      * @param array  $arguments
      *
-     * @return \Validate\ValidateAbstract
+     * @return \Dsheiko\Validate
      */
-    public function __call($name, array $arguments)
+    public function __call(string $name, array $arguments): Validate
     {
         $validator = $this->factory($name);
         $value = isset($arguments[0]) ? $arguments[0] : null;
@@ -56,7 +57,7 @@ class Validate
      *
      * @param bool $isValid
      */
-    public function setValid($isValid)
+    public function setValid(bool $isValid)
     {
         $this->isValid = $isValid;
     }
@@ -64,9 +65,9 @@ class Validate
     /**
      * Setter
      *
-     * @param array $message
+     * @param string $message
      */
-    public function pushMessage($message)
+    public function pushMessage(string $message)
     {
         $this->messages[] = $message;
     }
@@ -76,7 +77,7 @@ class Validate
      *
      * @return boolean
      */
-    public function isValid()
+    public function isValid(): bool
     {
         return $this->isValid;
     }
@@ -86,7 +87,7 @@ class Validate
      *
      * @return array
      */
-    public function getMessages()
+    public function getMessages(): array
     {
         return $this->messages;
     }
