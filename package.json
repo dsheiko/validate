@@ -1,6 +1,6 @@
 {
   "name": "validate",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Extendable validation library for testing complex types against a contract",
   "scripts": {
     "update": "composer dump-autoload",
@@ -11,7 +11,13 @@
     "preversion": "npm run lint && npm test",
     "postversion": "git push && git push --tags"
   },
-  "keywords": ["validate", "DbC", "validation", "library", "PHP"],
+  "keywords": [
+    "validate",
+    "DbC",
+    "validation",
+    "library",
+    "PHP"
+  ],
   "author": "",
   "license": "MIT"
 }
