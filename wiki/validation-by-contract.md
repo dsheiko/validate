@@ -1,5 +1,21 @@
 # Validation by Contract
 
+## Syntax 
+```
+Validate::contract([
+  parameterName => [ value, contract ], 
+  parameterName => [ value, contract ], 
+]
+```
+## Contract Forms
+```php
+$c1 = "IsInt"; // Single validator as a string (pointing at \Dsheiko\Validate\IsInt)
+$c2 = "IsInt, NotEmpty"; // Multiple validators as a string
+$c3 = [ "IsInt", "NotEmpty" ]; // Multiple validators as an array
+$c4 = [ "IsInt" => [ "min" => 0, "max" => 100 ] ]; // Validator with options
+```
+
+## Example
 ```php
 <?php
 Validate::contract([
